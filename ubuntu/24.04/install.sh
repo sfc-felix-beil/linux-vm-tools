@@ -46,7 +46,7 @@ systemctl stop xrdp-sesman
 
 # Configure the installed XRDP ini files.
 # use vsock transport.
-sed -i_orig -e 's/port=3389/port=vsock:\/\/-1:3389 tcp:\/\/:3389/g' /etc/xrdp/xrdp.ini
+sed -i_orig -e 's/port=[0-9]\+/port=vsock:\/\/-1:3389 tcp:\/\/:3389/g' /etc/xrdp/xrdp.ini
 # use rdp security.
 sed -i -e 's/security_layer=negotiate/security_layer=rdp/g' /etc/xrdp/xrdp.ini
 # remove encryption validation.
@@ -54,8 +54,8 @@ sed -i -e 's/crypt_level=high/crypt_level=none/g' /etc/xrdp/xrdp.ini
 # disable bitmap compression since its local its much faster
 sed -i -e 's/bitmap_compression=true/bitmap_compression=false/g' /etc/xrdp/xrdp.ini
 # increase bbp since this is a local connection
-sed -i -e 's/max_bpp=32/max_bpp=256/g' /etc/xrdp/xrdp.ini
-sed -i -e 's/#serverbpp=24/serverbpp=256/g' /etc/xrdp/xrdp.ini
+sed -i -e 's/max_bpp=[0-9]\+/max_bpp=256/g' /etc/xrdp/xrdp.ini
+sed -i -e 's/#\?xserverbpp=[0-9]\+/serverbpp=256/g' /etc/xrdp/xrdp.ini
 
 # Add script to setup the ubuntu session properly
 if [ ! -e /etc/xrdp/startubuntu.sh ]; then

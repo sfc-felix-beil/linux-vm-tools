@@ -55,7 +55,7 @@ sed -i -e 's/crypt_level=high/crypt_level=none/g' /etc/xrdp/xrdp.ini
 sed -i -e 's/bitmap_compression=true/bitmap_compression=false/g' /etc/xrdp/xrdp.ini
 # increase bbp since this is a local connection
 sed -i -e 's/max_bpp=[0-9]\+/max_bpp=256/g' /etc/xrdp/xrdp.ini
-sed -i -e 's/#\?xserverbpp=[0-9]\+/serverbpp=256/g' /etc/xrdp/xrdp.ini
+sed -i -e 's/#\?xserverbpp=[0-9]\+/xserverbpp=256/g' /etc/xrdp/xrdp.ini
 # increase tcp send buffer to fit uncompressed data
 sed -i -e 's/#\?tcp_send_buffer_bytes=[0-9]\+/tcp_send_buffer_bytes=524288/g' /etc/xrdp/xrdp.ini
 
